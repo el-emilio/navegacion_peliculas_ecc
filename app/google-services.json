@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "563097673",
+    "project_id": "navegacionpeliculas",
+    "storage_bucket": "navegacionpeliculas.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563097673:android:c05d05c206f6647c140f98",
+        "android_client_info": {
+          "package_name": "com.example.navegacion_peliculas_ecc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs-T1FgLU8_REdtV8WQort9BZyQEsPqrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

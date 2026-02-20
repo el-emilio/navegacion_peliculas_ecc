@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">navegacion_peliculas_ecc</string>
+
+    //LOGIN//
+    <string name="correo">Ingresar correo</string>
+    <string name="contraseña">Ingresar contraseña</string>
+
+    <string name="boton_login">Log In</string>
+    <string name="logout">Logout</string>
+
+    //HOME//
+
+
+
+</resources>
