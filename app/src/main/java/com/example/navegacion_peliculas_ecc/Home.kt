@@ -1,11 +1,11 @@
 package com.example.navegacion_peliculas_ecc
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ListView
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -37,7 +37,7 @@ class Home : AppCompatActivity() {
         enableEdgeToEdge()
 
         setContentView(R.layout.activity_home)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.eliminar)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -52,13 +52,8 @@ class Home : AppCompatActivity() {
         val agregarPeliculas = findViewById<FloatingActionButton>(R.id.agregoPelicula)
 
         agregarPeliculas.setOnClickListener {
-            val pelicula = pelicula("nombre", "genero", "anio")
-            myRef.push().setValue(pelicula).addOnCompleteListener {
-                task ->
-                if(task.isSuccessful){
-                    Toast.makeText(this, "Pelicula agregada", Toast.LENGTH_LONG).show()
-                }
-            }
+            startActivity(Intent(this, agregar::class.java))
+
         }
 
         val listView = findViewById<ListView>(R.id.lista)
@@ -66,21 +61,19 @@ class Home : AppCompatActivity() {
         listView.setOnItemClickListener{
             parent, view, position, id ->
 
-            Toast.makeText(this, peliculas[position].nombre.toString(), Toast.LENGTH_LONG).show()
+            //Toast.makeText(this, peliculas[position].nombre.toString(), Toast.LENGTH_LONG).show()
+
+            val seleccion = peliculas[position]
+
+            val intent = Intent(this, detalle::class.java).apply {
+                putExtra("nombre", seleccion.nombre)
+                putExtra("genero", seleccion.genero)
+                putExtra("anio", seleccion.anio)
+                putExtra("id", seleccion.id)
+            }
+            startActivity(intent)
         }
 
-        /*
-        val logout = findViewById<Button>(R.id.logout)
-        val saludo = findViewById<TextView>(R.id.saludo)
-
-        saludo.text = saludo.text.toString()+extras?.getCharSequence("email").toString()
-
-        logout.setOnClickListener{
-            auth.signOut()
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
- */
 
         // Read from the database
         myRef.addValueEventListener(object: ValueEventListener {
